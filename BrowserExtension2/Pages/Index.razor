@@ -1,0 +1,17 @@
+﻿@page "/index.html"
+@inherits IndexPage
+
+@inject IConfiguration _config
+
+<h1>Hello, from Blazor.</h1>
+
+@code {
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        
+        // You can access configuration settings here if needed
+        var someSetting = _config["Test:Abc"];
+        Console.WriteLine($"Configuration setting: {someSetting}");
+    }
+}
