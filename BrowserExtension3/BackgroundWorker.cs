@@ -18,24 +18,19 @@ public partial class BackgroundWorker : BackgroundWorkerBase
     public override void Main()
     {
         WebExtensions.Runtime.OnInstalled.AddListener(OnInstalled);
-
-        WebExtensions.Runtime.OnStartup.AddListener(OnStartup);
     }
 
     async Task OnInstalled()
     {
+        WebExtensions.ContextMenus.Create(Extension3);
+
+        WebExtensions.ContextMenus.OnClicked.AddListener(OnContextMenuClicked);
+
         var indexPageUrl = WebExtensions.Runtime.GetURL("index.html");
         await WebExtensions.Tabs.Create(new()
         {
             Url = indexPageUrl
         });
-    }
-
-    void OnStartup()
-    {
-        WebExtensions.ContextMenus.Create(Extension3);
-
-        WebExtensions.ContextMenus.OnClicked.AddListener(OnContextMenuClicked);
     }
 
     private async void OnContextMenuClicked(OnClickData onClickData, Tab tab)
