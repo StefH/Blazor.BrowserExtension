@@ -27,6 +27,7 @@
   "web_accessible_resources": [
     {
       "resources": [
+        "appsettings.json",
         "app.js",
         "framework/*",
         "content/*"
