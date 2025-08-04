@@ -1,5 +1,6 @@
 ﻿using Blazor.BrowserExtension;
 using BrowserExtension3;
+using BrowserExtension3.Interop;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -16,6 +17,8 @@ builder.UseBrowserExtension(browserExtension =>
         builder.RootComponents.Add<HeadOutlet>("head::after");
     }
 });
+
+builder.Services.AddSingleton<ChromeSidePanel>();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
